@@ -164,7 +164,7 @@ class AuthorFetcher:
             
             # If Semantic Scholar fails, try Crossref
             if not abstract:
-                logger.info("Semantic Scholar abstract not found, trying Crossref...")
+                # logger.info("Semantic Scholar abstract not found, trying Crossref...")
                 abstract = self.get_crossref_abstract(paper['title'], paper['authors'])
                 time.sleep(1)  # Rate limiting
 
@@ -200,7 +200,7 @@ class AuthorFetcher:
                             year = int(year_elem.text)
                             
                             if year >= EARLIEST_YEAR:
-                                # logger.info(f"Processing paper {i}/{total_hits} from year {year}")
+                                logger.info(f"Processing paper {i}/{total_hits} from year {year}")
                                 authors = [author.text for author in info.findall('.//author')]
                                 paper = {
                                     'title': info.find('title').text if info.find('title') is not None else '',
